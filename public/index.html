@@ -5,7 +5,17 @@
 </head>
 <body>
     <p>Welcome to ChatApp</p>
+    <form id="newmessage-form">
+        <input type="text" name='messageBox' placeholder="Message Here .."/>
+        <button>Send</button>
+    </form>
+    <div>
+        <ol id="messages-list">
+
+        </ol>
+    </div>
     <script src='/socket.io/socket.io.js'></script>
-    <script src='scripts/index.js'></script>
+    <script src='/scripts/libs/jquery-3.2.1.min.js'></script>    
+    <script src='/scripts/index.js'></script>
 </body>
 </html>

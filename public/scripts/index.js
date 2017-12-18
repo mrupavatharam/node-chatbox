@@ -1,11 +1,6 @@
 var socket = io();
 socket.on('connect', function() {
     console.log("connected to server");
-    socket.emit('createMessage',{
-        to:"suresh",
-        text:"hey hw r u",
-        createdAt: new Date()
-    })
 })
 
 socket.on('disconnect', function(){
@@ -15,11 +10,17 @@ socket.on('disconnect', function(){
 socket.on('newMessage', function(message){
     console.log("Client received new message");
     console.log(message);
+    var li = jQuery('<li></li>');
+    li.text(`${message.from}: ${message.text}`);
+    jQuery("#messages-list").append(li);
 })
 
-socket.emit('createMessage',{
-    from:"Agent007",text:"Hi"
-}, function(message){
-    console.log(message);
-});
-
+jQuery('#newmessage-form').on('submit', function(e){
+    e.preventDefault();
+    socket.emit('createMessage', { 
+        from:"User1",
+        text:jQuery('[name=messageBox]').val()
+    }, function(a){
+        console.log("ack")
+    })
+})
