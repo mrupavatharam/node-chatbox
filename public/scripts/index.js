@@ -17,3 +17,9 @@ socket.on('newMessage', function(message){
     console.log(message);
 })
 
+socket.emit('createMessage',{
+    from:"Agent007",text:"Hi"
+}, function(message){
+    console.log(message);
+});
+
